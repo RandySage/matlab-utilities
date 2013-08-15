@@ -3,7 +3,8 @@
 % with attribution required
 % (http://blog.stackoverflow.com/2009/06/attribution-required/)
 %
-% Based on http://stackoverflow.com/a/13050111/527489 by sclarke81
+% Based on http://stackoverflow.com/a/13050111/527489 by 
+% sclarke81 (http://stackoverflow.com/users/1326370/sclarke81)
 
 classdef handleAllHidden < handle
     methods (Hidden)
