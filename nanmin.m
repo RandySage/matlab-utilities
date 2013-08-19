@@ -1,7 +1,9 @@
-function mat = rowsRmNan(mat)
+function Y = nanmin(X)
+% returns the minimum min of X, computed after removing NaN values
 
-nanRowInds = find(sum(isnan(mat),2));
-mat(nanRowInds,:) = [];
+X(isnan(X)) = inf;
+
+Y = min(X);
 
 % Copyright 2013 Randy Sage
 % 
