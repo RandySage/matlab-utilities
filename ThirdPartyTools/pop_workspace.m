@@ -1,5 +1,5 @@
-function pop_workspace()
-% Pop last workspace off stack
+function pop_workspace(clear_before_pop)
+% Pop last workspace off stack (clear first if input is true)
 
 % Function written/provided under CC BY-SA 3.0 license by Andrew Janke
 % (http://stackoverflow.com/users/105904/andrew-janke) as written in the
@@ -13,12 +13,18 @@ if isempty(c)
     warning('Nothing on workspace stack');
     return;
 end
-s = c{end};
+
+if nargin && clear_before_pop
+    fprintf('Clearing workspace')
+    evalin('caller', 'clear');
+end
+
+fprintf('Popping "%s" from stack (now %d deep)\n', ...
+    c(end).name_notes, length(c)-1);
+
+s = c(end).wkspc;
 c(end) = [];
 setappdata(0, 'WORKSPACE_STACK', c);
-
-% Do this if you want a blank slate for your workspace
-evalin('caller', 'clear');
 
 % Stick vars back in caller's workspace
 names = fieldnames(s);
